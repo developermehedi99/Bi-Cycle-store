@@ -15,4 +15,4 @@ const biCycleSchema = new Schema<Bicycle>({
   inStock: { type: Boolean, required: true },
 });
 
-const BicycleModel = model<Bicycle>('Cycle', biCycleSchema);
+export const BicycleModel = model<Bicycle>('BiCycle', biCycleSchema);
