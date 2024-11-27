@@ -9,5 +9,4 @@ router.get('/:bicycleId', bicycleController.getSingleBicycle);
 router.put('/:bicycleId', bicycleController.updateBicycle);
 router.delete('/:bicycleId', bicycleController.deleteBicycle);
 
-
 export const BicycleRouters = router;
