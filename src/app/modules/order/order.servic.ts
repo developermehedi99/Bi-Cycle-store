@@ -1,9 +1,9 @@
 import { BicycleModel } from '../bicycle/bicycle.sehemaMdl';
-import { BicycleValidationZodSehema } from '../bicycle/bicycle.validationSehema';
-import { BicycleOrderModel } from './order.schemaMod';
+import { bicycleOrderModel } from './order.schemaModel';
+import { orderValidationZodSehema } from './order.zolValidationOrder';
 
-const calculateNewInfo = async (bicycleId: string, quantity: number) => {
-  const product = await BicycleModel.findById(bicycleId);
+const calculateNewInfo = async (productId: string, quantity: number) => {
+  const product = await BicycleModel.findById(productId);
   if (!product) {
     throw new Error('Product Not Found');
   }
@@ -18,36 +18,40 @@ const calculateNewInfo = async (bicycleId: string, quantity: number) => {
   await product.save();
   return product;
 };
-
-const bicycleOrderCreateFormDB = async (
+const bicycleOreateOderForcDB = async (
   email: string,
-  bicycleId: string,
+  productId: string,
   quantity: number,
 ) => {
-  const product = await BicycleModel.findById(bicycleId);
+  const product = await BicycleModel.findById(productId);
   const totalPrice = Number(product?.price) * quantity;
   const order = {
     email,
-    product: bicycleId,
+    product: productId,
     quantity,
     totalPrice,
   };
-  const validOrder = BicycleValidationZodSehema.parse(order);
-  const result = await BicycleOrderModel.create(validOrder);
+  const validOrder = orderValidationZodSehema.parse(order);
+  const result = await bicycleOrderModel.create(validOrder);
   return result;
 };
-const calculateTotalPriceFormDB = async () => {
-  const total = await BicycleOrderModel.aggregate([
+const calculateTotalPriFormDB = async () => {
+  const total = await bicycleOrderModel.aggregate([
+    // {$group:{_id:null,perTotalRevenue:{$sum:"$totalPrice"}}},
     { $project: { perDocTotal: { $multiply: ['$totalPrice', '$quantity'] } } },
 
     { $group: { _id: null, totalRevenue: { $sum: '$perDocTotal' } } },
     { $project: { _id: 0, totalRevenue: 1 } },
   ]);
+  // const result =total[0]
   return total[0];
 };
-
 export const bicycleOrderServices = {
   calculateNewInfo,
-  bicycleOrderCreateFormDB,
-  calculateTotalPriceFormDB,
+  bicycleOreateOderForcDB,
+  calculateTotalPriFormDB,
 };
+
+//handleTotalPriceIntoDB = calculateTotalPriFormDB
+// handleUpdateInventory = calculateNewInfo
+// createOderIntoDB=bicycleOreateOderForcDB

@@ -1,7 +1,7 @@
 import { model, Schema } from 'mongoose';
-import { BicycleOrder } from './order.interface';
+import { bicycleOrder } from './order.interface';
 
-const BicycleorderSchema = new Schema<BicycleOrder>(
+const BicycleorderSchema = new Schema<bicycleOrder>(
   {
     email: { type: String, required: true },
     product: { type: Schema.Types.ObjectId, ref: 'products' },
@@ -11,7 +11,7 @@ const BicycleorderSchema = new Schema<BicycleOrder>(
   { timestamps: true },
 );
 
-export const BicycleOrderModel = model<BicycleOrder>(
+export const bicycleOrderModel = model<bicycleOrder>(
   'OrderCycle',
   BicycleorderSchema,
 );

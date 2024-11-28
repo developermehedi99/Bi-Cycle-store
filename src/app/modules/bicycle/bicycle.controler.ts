@@ -4,7 +4,7 @@ import { BicycleValidationZodSehema } from './bicycle.validationSehema';
 
 const createBiCycle = async (req: Request, res: Response) => {
   try {
-    const { bicycle: bicycleData } = req.body;
+    const bicycleData = req.body;
     // zod validation
     const zodValidation = BicycleValidationZodSehema.parse(bicycleData);
     const result = await bicycleServices.createBiCycleIntoDB(zodValidation);
@@ -24,8 +24,7 @@ const createBiCycle = async (req: Request, res: Response) => {
 
 const getAllBiCycle = async (req: Request, res: Response) => {
   try {
-    const { searchTerm } = req.query;
-    const result = await bicycleServices.getAllBiCycleFormDB(searchTerm);
+    const result = await bicycleServices.getAllBiCycleFormDB();
     if (result.length <= 0) {
       res.status(404).json({
         status: false,

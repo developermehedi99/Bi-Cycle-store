@@ -9,8 +9,8 @@ app.use(express.json());
 app.use(cors());
 
 // application routers
-app.use('/api/v1/bicycles', BicycleRouters);
-app.use('/api/v1/orders', bicycleOrderRouters);
+app.use('/api/products', BicycleRouters);
+app.use('/api/orders', bicycleOrderRouters);
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello World!');

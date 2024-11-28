@@ -25,7 +25,9 @@ const updateBicycleFormDB = async (
     throw new Error('Product Not Found');
   }
   const filter = { _id: id };
-  const result = await BicycleModel.findOneAndUpdate(filter, updateDoc);
+  const result = await BicycleModel.findOneAndUpdate(filter, updateDoc, {
+    new: true,
+  });
   return result;
 };
 

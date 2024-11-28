@@ -3,16 +3,16 @@ import { bicycleOrderServices } from './order.servic';
 
 const createBicycleOrder = async (req: Request, res: Response) => {
   try {
-    const { email, product: bicycleId, quantity } = req.body;
-    await bicycleOrderServices.calculateNewInfo(bicycleId, quantity);
-    const result = await bicycleOrderServices.bicycleOrderCreateFormDB(
+    const { email, product: productId, quantity } = req.body;
+    await bicycleOrderServices.calculateNewInfo(productId, quantity);
+    const result = await bicycleOrderServices.bicycleOreateOderForcDB(
       email,
-      bicycleId,
+      productId,
       quantity,
     );
     res.status(200).json({
-      status: true,
       message: 'Order created successfully',
+      status: true,
       data: result,
     });
   } catch (error: any) {
@@ -23,13 +23,12 @@ const createBicycleOrder = async (req: Request, res: Response) => {
     });
   }
 };
-
 const calculateTotalPrice = async (req: Request, res: Response) => {
   try {
-    const result = await bicycleOrderServices.calculateTotalPriceFormDB();
+    const result = await bicycleOrderServices.calculateTotalPriFormDB();
     res.status(200).json({
-      status: true,
       message: 'Revenue calculated successfully',
+      status: true,
       data: result,
     });
   } catch (error: any) {
