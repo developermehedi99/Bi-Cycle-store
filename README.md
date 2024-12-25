@@ -1,16 +1,54 @@
-My project is built with Node.js,Express.js,Mongoose,TypeScript
+# 🚴 Bicycle Store Application
 
-features of my application:
-you can created bicycle products
-you get all bicycle products
-get single bicycle products
-update bicycle products
-delete bicycle products
-order bicycle
-and calculate total price, [profit/loss]
+## 🚀 Built With
 
-instructions on setting up the project locally:
-just clone my projects
+- **Node.js** - JavaScript runtime
+- **Express.js** - Web framework
+- **Mongoose** - MongoDB object modeling
+- **TypeScript** - Typed JavaScript
+
+---
+
+## 🌟 Features
+
+- 🛠️ **Create Bicycle Products** - Easily add new bicycle products.
+- 📋 **Get All Products** - View a complete list of available bicycles.
+- 🔍 **Get Single Product** - Fetch details of a specific bicycle.
+- ✏️ **Update Products** - Modify bicycle product details.
+- 🗑️ **Delete Products** - Remove unwanted products.
+- 🛒 **Order Bicycle** - Place orders seamlessly.
+- 💰 **Calculate Total Price [Profit/Loss]** - Track pricing and profitability.
+
+---
+
+## ⚙️ Installation and Setup
+
+Follow these steps to set up the project locally:
+
+1. **Clone the Repository**
+
+```bash
+git clone https://github.com/username/bicycle-store.git
+```
+
+2. **Install Dependencies**
+
+```bash
 npm install
-add .env file and setup projects name,password and database name
+```
+
+3. **Environment Configuration**
+
+- Create a `.env` file in the root directory.
+- Add the following details:
+  ```plaintext
+  PROJECT_NAME=your_project_name
+  DB_PASSWORD=your_database_password
+  DB_NAME=your_database_name
+  ```
+
+4. **Start Development Server**
+
+```bash
 npm run start:dev
+```
